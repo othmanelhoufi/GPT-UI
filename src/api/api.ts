@@ -24,14 +24,15 @@ export const getChatCompletion = async (
       'gpt-3.5-turbo-1106': 'gpt-35-turbo-1106',
       'gpt-3.5-turbo-0125': 'gpt-35-turbo-0125',
       'gpt-4-1106-preview' : 'gpt-4-turbo',
+      'gpt-4o' : 'gpt-4o-dzs',
     };
 
     const model = modelmapping[config.model] || config.model;
 
     // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
-      model === 'gpt-4' || model === 'gpt-4-32k' || model === 'gpt-4-turbo'
-        ? '2024-02-15-preview'
+      model === 'gpt-4o-dzs'
+        ? '2024-10-01'
         : '2023-03-15-preview';
 
     const path = `openai/deployments/${model}/chat/completions?api-version=${apiVersion}`;
@@ -79,15 +80,16 @@ export const getChatCompletionStream = async (
       'gpt-3.5-turbo': 'gpt-35-turbo',
       'gpt-3.5-turbo-16k': 'gpt-35-turbo-16k',
       'gpt-4-1106-preview' : 'gpt-4-turbo',
+      'gpt-4o' : 'gpt-4o-dzs',
     };
 
     const model = modelmapping[config.model] || config.model;
 
     // set api version to 2023-07-01-preview for gpt-4 and gpt-4-32k, otherwise use 2023-03-15-preview
     const apiVersion =
-      model === 'gpt-4' || model === 'gpt-4-32k' || model === 'gpt-4-turbo'
-        ? '2024-02-15-preview'
-        : '2023-03-15-preview';
+      model === 'gpt-4o-dzs'
+      ? '2024-10-01'
+      : '2023-03-15-preview';
     const path = `openai/deployments/${model}/chat/completions?api-version=${apiVersion}`;
 
     if (!endpoint.endsWith(path)) {
